@@ -27,4 +27,16 @@ public class PetDAOHibernateImpl implements PetDAO {
         List<Pet> pets = theQuery.getResultList();
         return pets;
     }
+
+    @Override
+    public Pet findById(int theId) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Pet thePet = currentSession.get(Pet.class, theId);
+        return thePet;
+    }
+    @Override
+    public void save(Pet thePet) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        currentSession.merge(thePet);
+    }
 }

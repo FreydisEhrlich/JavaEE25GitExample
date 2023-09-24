@@ -20,4 +20,14 @@ public class PetServiceImpl implements PetService{
     public List<Pet> findAll() {
         return petDAO.findAll();
     }
+
+    @Override
+    @Transactional
+    public Pet findById(int theId) {
+        return petDAO.findById(theId);
+    }
+    @Override
+    @Transactional
+    public void save(Pet thePet) {petDAO.save(thePet);
+    }
 }
